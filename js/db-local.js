@@ -8,25 +8,22 @@
 
 const KEY = "ruleta_premios_local";
 
-// Premios de ejemplo (los mismos de la gráfica de referencia de Castrol),
-// para que la ruleta se vea completa apenas se abre. Se cargan una sola
+// Premios oficiales del evento con su stock inicial. Se cargan una sola
 // vez si todavía no hay nada guardado; después se editan libremente
 // desde el panel de administración.
 const PREMIOS_INICIALES = [
-  "Vaso",
-  "Llavero",
-  "Tazón",
-  "Lápiz",
-  "Polera",
-  "Cambio",
-  "Jockey",
-  "Sticker",
-].map((nombre, i) => ({
+  ["Lápiz", 100],
+  ["Botella Flexible", 5],
+  ["Jockey", 50],
+  ["Parasol", 16],
+  ["Posa Vasos", 50],
+  ["Sticker", 500],
+].map(([nombre, stock], i) => ({
   id: "seed-" + i,
   nombre,
   imagen: "",
-  stockInicial: 10,
-  stockActual: 10,
+  stockInicial: stock,
+  stockActual: stock,
   entregados: 0,
   orden: i,
 }));
