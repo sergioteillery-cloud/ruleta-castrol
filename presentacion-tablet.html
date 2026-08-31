@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=1080, height=1920, initial-scale=1.0"
+    />
+    <title>Ruleta Castrol</title>
+    <link rel="stylesheet" href="css/style.css" />
+
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+      }
+
+      #pantalla {
+        width: 1080px;
+        height: 1920px;
+        background: #ffffff;
+        color: #1c1c1c;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+
+      .logo img {
+        width: 320px;
+      }
+
+      .contenedor {
+        position: relative;
+        width: 720px;
+        height: 720px;
+        margin-top: 40px;
+      }
+
+      canvas {
+        width: 100%;
+        height: 100%;
+      }
+
+      .flecha {
+        position: absolute;
+        top: 0px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 0;
+        border-left: 30px solid transparent;
+        border-right: 30px solid transparent;
+        border-top: 50px solid var(--acento);
+        z-index: 10;
+      }
+
+      #girar {
+        margin-top: 60px;
+        padding: 26px 70px;
+        font-size: 36px;
+        border: none;
+        border-radius: 12px;
+        background: var(--acento);
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+      }
+
+      #girar:hover:not(:disabled) {
+        background: var(--acento-oscuro);
+      }
+
+      #girar:disabled {
+        opacity: 0.6;
+        cursor: default;
+      }
+
+      #btnInventario {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        padding: 10px 15px;
+        font-size: 22px;
+        border: none;
+        border-radius: 8px;
+        background: var(--verde);
+        color: white;
+        cursor: pointer;
+      }
+
+      #btnInventario:hover {
+        background: var(--verde-oscuro);
+      }
+
+      #mensajeVacio {
+        font-size: 30px;
+        text-align: center;
+        margin-top: 80px;
+        padding: 0 40px;
+        color: #444;
+      }
+
+      #tablaStockPopup {
+        border-collapse: collapse;
+        font-size: 20px;
+      }
+
+      #tablaStockPopup td,
+      #tablaStockPopup th {
+        border: 1px solid #999;
+        padding: 8px 14px;
+      }
+
+      .input-agregar-stock {
+        width: 70px;
+        padding: 4px;
+        font-size: 18px;
+        margin-right: 6px;
+      }
+
+      #tablaStockPopup button {
+        padding: 6px 12px;
+        font-size: 16px;
+        border: none;
+        border-radius: 6px;
+        background: var(--acento);
+        color: white;
+        cursor: pointer;
+      }
+
+      #tablaStockPopup button:hover {
+        background: var(--acento-oscuro);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="pantalla">
+      <div class="logo">
+        <img src="img/logo.png" />
+        <button id="btnInventario">📦</button>
+      </div>
+
+      <div id="vistaRuleta">
+        <div class="contenedor">
+          <div class="flecha"></div>
+          <canvas id="ruleta" width="600" height="600"></canvas>
+        </div>
+        <br />
+        <div style="text-align: center">
+          <button id="girar">GIRAR RULETA</button>
+        </div>
+      </div>
+
+      <div id="mensajeVacio" style="display: none">
+        La ruleta todavía no tiene premios configurados.<br />Agregalos desde
+        el panel de administración.
+      </div>
+
+      <div id="modalGanador" class="modal">
+        <div class="modal-content" id="ganadorTexto"></div>
+      </div>
+
+      <div id="modalInventario" class="modal">
+        <div class="modal-content">
+          <h3>INVENTARIO</h3>
+          <table id="tablaStockPopup">
+            <tr>
+              <th>Premio</th>
+              <th>Stock</th>
+              <th>Entregados</th>
+            </tr>
+          </table>
+          <br />
+          <button onclick="cerrarInventario()">CERRAR</button>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="js/ruleta.js"></script>
+  </body>
+</html>

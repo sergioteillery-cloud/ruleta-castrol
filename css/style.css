@@ -1,0 +1,119 @@
+:root {
+  --verde: #038738;
+  --verde-oscuro: #025c26;
+  --acento: #e30521;
+  --acento-oscuro: #b1041a;
+  --negro: #1c1c1c;
+  --gris-panel: #111;
+  --gris-borde: #333;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #000;
+  color: white;
+}
+
+/* ---------- Modal genérico (usado en admin y presentación) ---------- */
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.3s;
+  z-index: 100;
+}
+
+.modal.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal-content {
+  background: white;
+  color: black;
+  padding: 40px 50px;
+  border-radius: 20px;
+  font-size: 22px;
+  font-weight: bold;
+  box-shadow: 0 0 40px var(--verde);
+  text-align: center;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-content h3 {
+  margin-top: 0;
+}
+
+.modal-content button {
+  margin-top: 20px;
+  padding: 14px 34px;
+  font-size: 20px;
+  font-weight: bold;
+  background: var(--acento);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.modal-content button:hover {
+  background: var(--acento-oscuro);
+}
+
+.modal-content button.secundario {
+  background: #666;
+}
+
+.modal-content button.secundario:hover {
+  background: #444;
+}
+
+/* ---------- Botón genérico ---------- */
+
+.btn {
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  background: var(--acento);
+  color: white;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: var(--acento-oscuro);
+}
+
+.btn.gris {
+  background: #444;
+}
+
+.btn.gris:hover {
+  background: #666;
+}
+
+.btn.peligro {
+  background: #444;
+}
+
+.btn.peligro:hover {
+  background: #a11;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

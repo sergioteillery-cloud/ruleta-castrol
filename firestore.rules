@@ -1,0 +1,17 @@
+rules_version = '2';
+
+// Reglas simples para un evento: cualquiera con el link puede leer
+// (necesario para que la tablet/tótem vea la ruleta) y escribir
+// (necesario para que el panel de administración funcione sin login).
+//
+// No hay autenticación de por medio, así que la seguridad real es
+// "no compartas el link de admin.html en público". Los datos guardados
+// son solo nombres de premios, imágenes e inventario: no hay
+// información sensible.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /premios/{premioId} {
+      allow read, write: if true;
+    }
+  }
+}

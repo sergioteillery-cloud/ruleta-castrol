@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Administración · Ruleta Castrol</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        padding: 30px 16px 80px;
+      }
+
+      .contenedor-admin {
+        width: 100%;
+        max-width: 900px;
+      }
+
+      header {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        margin-bottom: 30px;
+        flex-wrap: wrap;
+      }
+
+      .logo-header {
+        background: #fff;
+        padding: 8px 16px;
+        border-radius: 10px;
+        line-height: 0;
+      }
+
+      .logo-header img {
+        height: 44px;
+        display: block;
+      }
+
+      header h1 {
+        font-size: 26px;
+        margin: 0;
+        flex: 1;
+      }
+
+      .acciones-header {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      section {
+        background: var(--gris-panel);
+        border: 1px solid var(--gris-borde);
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 24px;
+      }
+
+      section h2 {
+        margin-top: 0;
+        font-size: 20px;
+        border-bottom: 1px solid var(--gris-borde);
+        padding-bottom: 10px;
+      }
+
+      .form-premio {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        align-items: flex-end;
+      }
+
+      .campo {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .campo label {
+        font-size: 13px;
+        color: #ccc;
+      }
+
+      .campo input[type="text"],
+      .campo input[type="number"] {
+        padding: 10px;
+        border-radius: 6px;
+        border: 1px solid #555;
+        background: #222;
+        color: white;
+        font-size: 15px;
+        width: 160px;
+      }
+
+      .campo input[type="file"] {
+        color: #ccc;
+        max-width: 220px;
+      }
+
+      .preview {
+        width: 56px;
+        height: 56px;
+        border-radius: 8px;
+        object-fit: contain;
+        background: #222;
+        border: 1px solid #444;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+      }
+
+      th,
+      td {
+        border-bottom: 1px solid var(--gris-borde);
+        padding: 10px 8px;
+        text-align: center;
+        vertical-align: middle;
+      }
+
+      th {
+        color: #ccc;
+        font-weight: normal;
+        text-transform: uppercase;
+        font-size: 12px;
+      }
+
+      td img {
+        width: 44px;
+        height: 44px;
+        object-fit: contain;
+        background: #fff;
+        border-radius: 6px;
+        padding: 2px;
+      }
+
+      td.nombre {
+        text-align: left;
+        font-weight: bold;
+      }
+
+      .fila-acciones {
+        display: flex;
+        gap: 6px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .fila-acciones button {
+        padding: 6px 10px;
+        font-size: 13px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        background: #333;
+        color: white;
+      }
+
+      .fila-acciones button:hover {
+        background: #555;
+      }
+
+      .fila-acciones button.eliminar:hover {
+        background: #a11;
+      }
+
+      .stock-input {
+        width: 60px;
+        text-align: center;
+        border-radius: 6px;
+        border: 1px solid #555;
+        background: #222;
+        color: white;
+        padding: 4px;
+      }
+
+      .vacio {
+        color: #888;
+        text-align: center;
+        padding: 20px 0;
+      }
+
+      #passGate {
+        z-index: 200;
+      }
+
+      #passGate input {
+        margin: 16px 0;
+        width: 100%;
+      }
+
+      .enlace-presentacion {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      .enlace-presentacion input {
+        flex: 1;
+        min-width: 220px;
+        padding: 10px;
+        border-radius: 6px;
+        border: 1px solid #555;
+        background: #222;
+        color: #ccc;
+        font-size: 13px;
+      }
+
+      .aviso {
+        font-size: 12px;
+        color: #999;
+        margin-top: 8px;
+      }
+
+      #mensajeEstado {
+        font-size: 13px;
+        margin-top: 10px;
+        min-height: 18px;
+      }
+
+      #mensajeEstado.error {
+        color: #ff8080;
+      }
+
+      #mensajeEstado.ok {
+        color: #8f8;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="contenedor-admin">
+      <header>
+        <div class="logo-header"><img src="img/logo.png" alt="logo" /></div>
+        <h1>Administración de la Ruleta</h1>
+        <div class="acciones-header">
+          <button class="btn" onclick="window.open('presentacion.html', '_blank')">
+            🎡 Modo presentación
+          </button>
+          <button class="btn gris" onclick="window.open('presentacion-tablet.html', '_blank')">
+            📱 Modo tablet
+          </button>
+        </div>
+      </header>
+
+      <section>
+        <h2>Link para pantalla del evento</h2>
+        <div class="enlace-presentacion">
+          <input id="linkPresentacion" type="text" readonly />
+          <button class="btn gris" id="btnCopiarLink">Copiar link</button>
+        </div>
+        <p class="aviso">
+          Con logo, código QR y redes sociales.
+        </p>
+      </section>
+
+      <section>
+        <h2>Link para tablet</h2>
+        <div class="enlace-presentacion">
+          <input id="linkPresentacionTablet" type="text" readonly />
+          <button class="btn gris" id="btnCopiarLinkTablet">Copiar link</button>
+        </div>
+        <p class="aviso">
+          Versión simplificada: solo logo, ruleta y botón de girar. Sin QR ni
+          redes sociales.
+        </p>
+      </section>
+
+      <section>
+        <h2>Agregar premio</h2>
+        <form class="form-premio" id="formPremio">
+          <div class="campo">
+            <label>Nombre</label>
+            <input type="text" id="fNombre" required />
+          </div>
+          <div class="campo">
+            <label>Stock inicial</label>
+            <input type="number" id="fStock" min="0" value="10" required />
+          </div>
+          <div class="campo">
+            <label>Imagen (opcional)</label>
+            <input type="file" id="fImagen" accept="image/*" />
+          </div>
+          <img id="fPreview" class="preview" style="display: none" />
+          <button class="btn" type="submit">Agregar</button>
+        </form>
+        <div id="mensajeEstado"></div>
+      </section>
+
+      <section>
+        <h2>Premios configurados</h2>
+        <table id="tablaPremios">
+          <thead>
+            <tr>
+              <th>Orden</th>
+              <th>Imagen</th>
+              <th>Nombre</th>
+              <th>Stock inicial</th>
+              <th>Stock actual</th>
+              <th>Entregados</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="cuerpoTablaPremios"></tbody>
+        </table>
+        <div id="vacioPremios" class="vacio" style="display: none">
+          Todavía no agregaste premios. Usá el formulario de arriba.
+        </div>
+      </section>
+    </div>
+
+    <div id="modalEditar" class="modal">
+      <div class="modal-content">
+        <h3>Editar premio</h3>
+        <div class="campo">
+          <label>Nombre</label>
+          <input type="text" id="eNombre" />
+        </div>
+        <br />
+        <div class="campo">
+          <label>Stock inicial</label>
+          <input type="number" id="eStock" min="0" />
+        </div>
+        <br />
+        <div class="campo">
+          <label>Cambiar imagen (opcional)</label>
+          <input type="file" id="eImagen" accept="image/*" />
+        </div>
+        <br />
+        <img id="ePreview" class="preview" />
+        <br />
+        <button onclick="guardarEdicion()">Guardar</button>
+        <button class="secundario" onclick="cerrarModalEditar()">
+          Cancelar
+        </button>
+      </div>
+    </div>
+
+    <script type="module" src="js/admin.js"></script>
+  </body>
+</html>
