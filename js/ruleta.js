@@ -158,12 +158,25 @@ function bucleDibujo() {
 async function girarRuleta() {
   if (girando || premios.length === 0) return;
 
+  // El sorteo solo elige entre premios con stock: el sector agotado se
+  // sigue viendo en la ruleta, pero la flecha nunca cae en él hasta que
+  // se le recargue stock o se elimine desde el panel de administración.
+  const indicesConStock = premios
+    .map((_, i) => i)
+    .filter((i) => (premios[i].stockActual || 0) > 0);
+
+  if (indicesConStock.length === 0) {
+    mostrarMensaje("😔 No quedan premios disponibles");
+    return;
+  }
+
   girando = true;
   document.getElementById("girar").disabled = true;
 
   const total = premios.length;
   const anguloPorSeccion = (2 * Math.PI) / total;
-  const indiceGanador = Math.floor(Math.random() * total);
+  const indiceGanador =
+    indicesConStock[Math.floor(Math.random() * indicesConStock.length)];
   const premioElegido = premios[indiceGanador];
 
   const anguloGanador =
