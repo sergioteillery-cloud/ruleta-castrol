@@ -1,24 +1,17 @@
 // ============================================================
 // CONFIGURACIÓN DE FIREBASE
 // ============================================================
-// Reemplazá los valores de abajo por los que te da la consola
-// de Firebase al crear tu proyecto (Configuración del proyecto
-// > tus apps > SDK setup and configuration > Config).
+// Proyecto: https://console.firebase.google.com/project/ruleta-castrol
+// Firestore (base de datos "premios") en la región southamerica-west1 (Santiago).
 //
-// Pasos rápidos:
-// 1. Entrá a https://console.firebase.google.com/
-// 2. Creá un proyecto nuevo (ej: "ruleta-castrol")
-// 3. En el menú lateral: Compilación > Firestore Database > Crear
-//    base de datos (elegí modo "producción" y la región más cercana)
-// 4. En Reglas de Firestore, pegá el contenido del archivo
-//    firestore.rules (está en esta misma carpeta) y publicá.
-// 5. En Configuración del proyecto (ícono de tuerca) > agregar app
-//    Web (</>) > registrá la app > copiá el objeto firebaseConfig
-//    y pegalo acá abajo, reemplazando el de ejemplo.
+// Este archivo se sube al repo SOLO con valores de ejemplo. Al publicar en
+// GitHub Pages, el workflow .github/workflows/deploy.yml genera la versión
+// real de este archivo a partir de los Secrets del repositorio (Settings >
+// Secrets and variables > Actions), así la clave real nunca queda commiteada.
 //
-// Mientras esto tenga los valores de ejemplo ("TU_API_KEY"), la app
-// funciona en modo local (guarda solo en este navegador) para que
-// puedas probarla sin configurar nada.
+// Para desarrollo local, reemplazá los valores de abajo por los reales
+// (los mismos que están cargados como Secrets) o dejalos así para probar
+// en modo local (localStorage, sin sincronizar entre dispositivos).
 // ============================================================
 
 export const firebaseConfig = {
