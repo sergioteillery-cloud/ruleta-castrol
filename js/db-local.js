@@ -12,12 +12,11 @@ const KEY = "ruleta_premios_local";
 // vez si todavía no hay nada guardado; después se editan libremente
 // desde el panel de administración.
 const PREMIOS_INICIALES = [
-  ["Lápiz", 100],
-  ["Botella Flexible", 5],
-  ["Jockey", 50],
-  ["Parasol", 16],
-  ["Posa Vasos", 50],
-  ["Sticker", 500],
+  ["Parasol", 15],
+  ["Jockey", 15],
+  ["Botellas Flexibles", 15],
+  ["Mouse Pads", 15],
+  ["Poleras", 15],
 ].map(([nombre, stock], i) => ({
   id: "seed-" + i,
   nombre,
