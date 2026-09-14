@@ -17,6 +17,7 @@ const PREMIOS_INICIALES = [
   ["Botellas Flexibles", 15],
   ["Mouse Pads", 15],
   ["Poleras", 15],
+  ["Sticker", 100],
 ].map(([nombre, stock], i) => ({
   id: "seed-" + i,
   nombre,
